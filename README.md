@@ -25,6 +25,7 @@ sudo tar -czf /mnt/dae4cf6d-35d6-4a5e-8ca3-b5ad6ef52795/docker_vl/volumes/backup
 sudo cp /mnt/dae4cf6d-35d6-4a5e-8ca3-b5ad6ef52795/docker_vl/volumes/backupvol_ver_29092025.tar.gz $(pwd)
 
 ## Remove & copy back (restore) and Change Owner
+If u compresed or encrypt backup data, let download, move to volume, decript, decompres before run restore.
 ```bash
 docker run --volumes-from mysql_db -v backupvol_ver_29092025:/backupvol_ver_29092025 -it --rm --user root percona/percona-xtrabackup:8.0.34 /bin/bash -c "rm -rf /var/lib/mysql/* && xtrabackup --copy-back --datadir=/var/lib/mysql/ --target-dir=/backupvol_ver_29092025 && chown -R mysql:mysql /var/lib/mysql/"
 ```
@@ -67,6 +68,6 @@ INSERT INTO account_version1 (username, password, avatar, email, status) VALUES
 
 
 ## TODO:
-- [] Compress
+- [x] Compress
 - [] Encrypt 
 - [] Push to cloud or system NF S
