@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: backup_db
+      MYSQL_USER: backup_user
+      MYSQL_PASSWORD: userpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_datastorage:/var/lib/mysql
+    networks:
+      - cluster_a_host_network
+    command: --default-authentication-plugin=mysql_native_password --log-bin=mysql-bin --server-id=1
+
+volumes:
+  mysql_datastorage:
+    external: true
+
+networks:
+  cluster_a_host_network:
+    external: true
