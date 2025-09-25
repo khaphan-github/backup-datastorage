@@ -20,6 +20,9 @@ sudo cat /mnt/dae4cf6d-35d6-4a5e-8ca3-b5ad6ef52795/docker_vl/volumes/backupvol_v
 sudo cat /mnt/dae4cf6d-35d6-4a5e-8ca3-b5ad6ef52795/docker_vl/volumes/backupvol_ver_29092025/_data/xtrabackup_binlog_info
 docker volume inspect backupvol_ver_29092025
 ```
+Optinal compress file
+sudo tar -czf /mnt/dae4cf6d-35d6-4a5e-8ca3-b5ad6ef52795/docker_vl/volumes/backupvol_ver_29092025.tar.gz -C /mnt/dae4cf6d-35d6-4a5e-8ca3-b5ad6ef52795/docker_vl/volumes backupvol_ver_29092025
+sudo cp /mnt/dae4cf6d-35d6-4a5e-8ca3-b5ad6ef52795/docker_vl/volumes/backupvol_ver_29092025.tar.gz $(pwd)
 
 ## Remove & copy back (restore) and Change Owner
 ```bash
@@ -61,3 +64,9 @@ INSERT INTO account_version1 (username, password, avatar, email, status) VALUES
 ('robert_anderson', 'hashed_password_9', 'https://example.com/avatars/robert.jpg', 'robert.anderson@example.com', 1),
 ('amanda_thomas', 'hashed_password_10', 'https://example.com/avatars/amanda.jpg', 'amanda.thomas@example.com', 1);
 ```
+
+
+## TODO:
+- [] Compress
+- [] Encrypt 
+- [] Push to cloud or system NF S
